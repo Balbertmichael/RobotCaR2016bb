@@ -50,6 +50,7 @@ void loop() {
   int CENTERDISTANCEDIGITAL = 0;
   if (CENTERDISTANCEREADING > DISTANCESENSOR_THRESHOLD) CENTERDISTANCEDIGITAL = 1;
 
+  if (LEFTDISTANCEDIGITAL == 1 ||
 	RIGHTDISTANCEDIGITAL == 1 ||
 	CENTERDISTANCEDIGITAL == 1) {		//This checks for a reading from any of the distance sensors
 	//Place code for distance-sensor-based behavior here
