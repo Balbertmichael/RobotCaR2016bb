@@ -9,8 +9,10 @@
 #define RIGHTOUTPUTA 9
 #define RIGHTOUTPUTB 10
 
-int PHOTORESISTOR_THRESHOLD = 250;
+int differenceThreshold = 40;
+
 int DISTANCESENSOR_THRESHOLD = 100;
+int REDLINE_THRESHOLD = 200
 
 void setup() {
   // put your setup code here, to run once:
@@ -29,38 +31,38 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  int LEFTPHOTOREADING = analogRead(LEFTPHOTO);
-  int RIGHTPHOTOREADING = analogRead(RIGHTPHOTO);
-  int CENTERPHOTOREADING = analogRead(CENTERPHOTO);
+  int leftPhoto = analogRead(LEFTPHOTO);
+  int rightPhoto = analogRead(RIGHTPHOTO);
+  int centerPhoto = analogRead(CENTERPHOTO);
   int LEFTDISTANCEREADING = analogRead(LEFTDISTANCE);
   int RIGHTDISTANCEREADING = analogRead(RIGHTDISTANCE);
   int CENTERDISTANCEREADING = analogRead(CENTERDISTANCE);
-  
-  int LEFTPHOTODIGITAL = 0;							//Default value for all digital readings is 0
-  if (LEFTPHOTOREADING > PHOTORESISTOR_THRESHOLD) { LEFTPHOTODIGITAL = 1; }		//but if analog value > threshold, change to 1
-  int RIGHTPHOTODIGITAL = 0;									
-  if (RIGHTPHOTOREADING > PHOTORESISTOR_THRESHOLD) { RIGHTPHOTODIGITAL = 1; }	// Do they revert back to 0 if < threshold ? - John L
-  int CENTERPHOTODIGITAL = 0;
-  if (CENTERPHOTOREADING > PHOTORESISTOR_THRESHOLD) { CENTERPHOTODIGITAL = 1; }
-
+	 
+  if (centerPhoto > REDLINE_THRESHOLD) {RIGHTLINEDETECTED = 1; }
+	
   int LEFTDISTANCEDIGITAL = 0;							//Same process for distance sensor readings
   if (LEFTDISTANCEREADING > DISTANCESENSOR_THRESHOLD) { LEFTDISTANCEDIGITAL = 1; }
   int RIGHTDISTANCEDIGITAL = 0;
   if (RIGHTDISTANCEREADING > DISTANCESENSOR_THRESHOLD) { RIGHTDISTANCEDIGITAL = 1; }
   int CENTERDISTANCEDIGITAL = 0;
   if (CENTERDISTANCEREADING > DISTANCESENSOR_THRESHOLD) { CENTERDISTANCEDIGITAL = 1; }
+  
 
-  if (LEFTDISTANCEDIGITAL == 1 ||
-	RIGHTDISTANCEDIGITAL == 1 ||
-	CENTERDISTANCEDIGITAL == 1) {		//This checks for a reading from any of the distance sensors
-	//Place code for distance-sensor-based behavior here
-  } else {
-	if (LEFTPHOTODIGITAL == 0) {
-		turnLeft();
-	} else if (RIGHTPHOTODIGITAL == 0) {
-		turnRight();
+  if (CENTERDISTANCEDIGITAL == 1) {		//This checks for a reading from any of the distance sensors
+	stopMotion();
+  } else if (LEFTDISTANCEDIGITAL == 1 || RIGHTDISTANCEDIGITAL == 1) {
+	if (REDLINEDETECTED == 1) {
+		stopMotion();
 	} else {
 		forward();
+	}	
+  } else {   
+	if (leftPhoto <= rightPhoto && centerPhoto <= leftPhoto && (max (rightPhoto, leftPhoto) - centerPhoto) > differenceThreshold) {
+		forward();
+	} else if (rightPhoto <= centerPhoto && rightPhoto <= leftPhoto && (max (centerPhoto, leftPhoto) - rightPhoto) > differenceThreshold) {
+		turnRight();
+	} else if (leftPhoto <= centerPhoto && leftPhoto <= rightPhoto && (max (centerPhoto, rightPhoto) - leftPhoto) > differenceThreshold {
+		turnLeft(); //not finished
 	}
   }
 }
