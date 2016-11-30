@@ -1,4 +1,4 @@
-#define LEFTPHOTO	A5	//These analog input ports need to be defined!
+#define LEFTPHOTO  A5  //These analog input ports need to be defined!
 #define RIGHTPHOTO A3
 #define CENTERPHOTO A4
 #define LEFTDISTANCE A2
@@ -12,7 +12,7 @@
 int differenceThreshold = 40;
 
 int DISTANCESENSOR_THRESHOLD = 100;
-int REDLINE_THRESHOLD = 200
+int REDLINE_THRESHOLD = 200;
 
 void setup() {
   // put your setup code here, to run once:
@@ -37,28 +37,28 @@ void loop() {
   int LEFTDISTANCEREADING = analogRead(LEFTDISTANCE);
   int RIGHTDISTANCEREADING = analogRead(RIGHTDISTANCE);
   int CENTERDISTANCEREADING = analogRead(CENTERDISTANCE);
-	 
-  if (centerPhoto > REDLINE_THRESHOLD) {RIGHTLINEDETECTED = 1; }
-	
-  int LEFTDISTANCEDIGITAL = 0;							//Same process for distance sensor readings
-  if (LEFTDISTANCEREADING > DISTANCESENSOR_THRESHOLD) { LEFTDISTANCEDIGITAL = 1; }
-  int RIGHTDISTANCEDIGITAL = 0;
-  if (RIGHTDISTANCEREADING > DISTANCESENSOR_THRESHOLD) { RIGHTDISTANCEDIGITAL = 1; }
-  int CENTERDISTANCEDIGITAL = 0;
-  if (CENTERDISTANCEREADING > DISTANCESENSOR_THRESHOLD) { CENTERDISTANCEDIGITAL = 1; }
+
+
+  Serial.println(" ");
+  Serial.print(leftPhoto);
+  Serial.print("\t");
+  Serial.print(rightPhoto);
+  Serial.print("\t");
+  Serial.print(centerPhoto);
   
 
-	{
-		{
-	if (leftPhoto <= rightPhoto && centerPhoto <= leftPhoto && (max (rightPhoto, leftPhoto) - centerPhoto) > differenceThreshold) {
-		forward();
-	} else if (rightPhoto <= centerPhoto && rightPhoto <= leftPhoto && (max (centerPhoto, leftPhoto) - rightPhoto) > differenceThreshold) {
-		turnRight();
-	} else if (leftPhoto <= centerPhoto && leftPhoto <= rightPhoto && (max (centerPhoto, rightPhoto) - leftPhoto) > differenceThreshold {
-		turnLeft(); //not finished
-	}
+ 
+
+  
+  if (leftPhoto <= rightPhoto && centerPhoto <= leftPhoto && (max (rightPhoto, leftPhoto) - centerPhoto) > differenceThreshold) {
+    forward();
+  } else if (rightPhoto <= centerPhoto && rightPhoto <= leftPhoto && (max (centerPhoto, leftPhoto) - rightPhoto) > differenceThreshold) {
+    turnRight();
+  } else if (leftPhoto <= centerPhoto && leftPhoto <= rightPhoto && (max (centerPhoto, rightPhoto) - leftPhoto) > differenceThreshold) {
+    turnLeft(); //not finished
   }
-}
+  }
+
 
 void forward () {
     digitalWrite(LEFTOUTPUTA, HIGH);
@@ -84,5 +84,3 @@ void stopMotion () {
     digitalWrite(LEFTOUTPUTB, LOW);
     digitalWrite(RIGHTOUTPUTB, LOW);
 }
-}
-
