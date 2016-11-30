@@ -84,3 +84,4 @@ void stopMotion () {
     digitalWrite(LEFTOUTPUTB, LOW);
     digitalWrite(RIGHTOUTPUTB, LOW);
 }
+
