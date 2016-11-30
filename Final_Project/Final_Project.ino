@@ -9,9 +9,10 @@
 #define RIGHTOUTPUTA 9
 #define RIGHTOUTPUTB 10
 
-int differenceThreshold = 40;
+int differenceThreshold = 30;
 
 int DISTANCESENSOR_THRESHOLD = 100;
+int whiteThreshold = 300;
 int REDLINE_THRESHOLD = 200;
 
 void setup() {
@@ -31,6 +32,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  delay(2);
   int leftPhoto = analogRead(LEFTPHOTO);
   int rightPhoto = analogRead(RIGHTPHOTO);
   int centerPhoto = analogRead(CENTERPHOTO);
@@ -48,15 +50,19 @@ void loop() {
   
 
  
-
-  
-  if (leftPhoto <= rightPhoto && centerPhoto <= leftPhoto && (max (rightPhoto, leftPhoto) - centerPhoto) > differenceThreshold) {
-    forward();
-  } else if (rightPhoto <= centerPhoto && rightPhoto <= leftPhoto && (max (centerPhoto, leftPhoto) - rightPhoto) > differenceThreshold) {
-    turnRight();
-  } else if (leftPhoto <= centerPhoto && leftPhoto <= rightPhoto && (max (centerPhoto, rightPhoto) - leftPhoto) > differenceThreshold) {
-    turnLeft(); //not finished
-  }
+  if (leftPhoto > whiteThreshold &&
+      centerPhoto > whiteThreshold &&
+      rightPhoto > whiteThreshold) {
+        turnLeft();
+      } else {
+        if (leftPhoto <= rightPhoto && centerPhoto <= leftPhoto && (max (rightPhoto, leftPhoto) - centerPhoto) > differenceThreshold) {
+          forward();
+        } else if (rightPhoto <= centerPhoto && rightPhoto <= leftPhoto && (max (centerPhoto, leftPhoto) - rightPhoto) > differenceThreshold) {
+          turnRight();
+        } else if (leftPhoto <= centerPhoto || leftPhoto <= rightPhoto && (max (centerPhoto, rightPhoto) - leftPhoto) > differenceThreshold) {
+          turnLeft(); //not finished
+        }
+      }
   }
 
 
