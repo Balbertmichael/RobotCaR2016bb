@@ -48,15 +48,8 @@ void loop() {
   if (CENTERDISTANCEREADING > DISTANCESENSOR_THRESHOLD) { CENTERDISTANCEDIGITAL = 1; }
   
 
-  if (CENTERDISTANCEDIGITAL == 1) {		//This checks for a reading from any of the distance sensors
-	stopMotion();
-  } else if (LEFTDISTANCEDIGITAL == 1 || RIGHTDISTANCEDIGITAL == 1) {
-	if (REDLINEDETECTED == 1) {
-		stopMotion();
-	} else {
-		forward();
-	}	
-  } else {   
+	{
+		{
 	if (leftPhoto <= rightPhoto && centerPhoto <= leftPhoto && (max (rightPhoto, leftPhoto) - centerPhoto) > differenceThreshold) {
 		forward();
 	} else if (rightPhoto <= centerPhoto && rightPhoto <= leftPhoto && (max (centerPhoto, leftPhoto) - rightPhoto) > differenceThreshold) {
