@@ -12,7 +12,7 @@
 int differenceThreshold = 30;
 
 int DISTANCESENSOR_THRESHOLD = 100;
-int whiteThreshold = 300;
+int whiteThreshold = 500;
 int REDLINE_THRESHOLD = 200;
 
 void setup() {
@@ -32,7 +32,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  delay(2);
+ // delay(1.4);
   int leftPhoto = analogRead(LEFTPHOTO);
   int rightPhoto = analogRead(RIGHTPHOTO);
   int centerPhoto = analogRead(CENTERPHOTO);
@@ -48,13 +48,7 @@ void loop() {
   Serial.print("\t");
   Serial.print(centerPhoto);
   
-
  
-  if (leftPhoto > whiteThreshold &&
-      centerPhoto > whiteThreshold &&
-      rightPhoto > whiteThreshold) {
-        turnLeft();
-      } else {
         if (leftPhoto <= rightPhoto && centerPhoto <= leftPhoto && (max (rightPhoto, leftPhoto) - centerPhoto) > differenceThreshold) {
           forward();
         } else if (rightPhoto <= centerPhoto && rightPhoto <= leftPhoto && (max (centerPhoto, leftPhoto) - rightPhoto) > differenceThreshold) {
@@ -62,7 +56,6 @@ void loop() {
         } else if (leftPhoto <= centerPhoto || leftPhoto <= rightPhoto && (max (centerPhoto, rightPhoto) - leftPhoto) > differenceThreshold) {
           turnLeft(); //not finished
         }
-      }
   }
 
 
@@ -90,4 +83,3 @@ void stopMotion () {
     digitalWrite(LEFTOUTPUTB, LOW);
     digitalWrite(RIGHTOUTPUTB, LOW);
 }
-
