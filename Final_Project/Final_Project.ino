@@ -61,8 +61,8 @@ void loop() {
 		forward();
 	} else if (rightPhoto <= centerPhoto && rightPhoto <= leftPhoto && (max (centerPhoto, leftPhoto) - rightPhoto) > differenceThreshold) {
 		turnRight();
-	} else if (leftPhoto <= centerPhoto && rightPhoto <= leftPhoto && (max (centerPhoto, leftPhoto) - rightPhoto) > differenceThreshold {
-		forward(); //not finished
+	} else if (leftPhoto <= centerPhoto && leftPhoto <= rightPhoto && (max (centerPhoto, rightPhoto) - leftPhoto) > differenceThreshold {
+		turnLeft(); //not finished
 	}
   }
 }
