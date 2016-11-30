@@ -1,9 +1,9 @@
-#define LEFTPHOTO		//These analog input ports need to be defined!
-#define RIGHTPHOTO
-#define CENTERPHOTO
-#define LEFTDISTANCE
-#define RIGHTDISTANCE
-#define CENTERDISTANCE 
+#define LEFTPHOTO	A5	//These analog input ports need to be defined!
+#define RIGHTPHOTO A3
+#define CENTERPHOTO A4
+#define LEFTDISTANCE A2
+#define RIGHTDISTANCE A0
+#define CENTERDISTANCE A1
 #define LEFTOUTPUTA 5
 #define LEFTOUTPUTB 6
 #define RIGHTOUTPUTA 9
