@@ -16,12 +16,12 @@ int REDLINE_THRESHOLD = 200
 
 void setup() {
   // put your setup code here, to run once:
-  /*pinMode(LEFTPHOTO, INPUT);
+  pinMode(LEFTPHOTO, INPUT);
   pinMode(RIGHTPHOTO, INPUT);
   pinMode(CENTERPHOTO, INPUT);
   pinMode(LEFTDISTANCE, INPUT);
   pinMode(RIGHTDISTANCE, INPUT);
-  pinMode(CENTERDISTANCE, INPUT);*/
+  pinMode(CENTERDISTANCE, INPUT);
   pinMode(LEFTOUTPUTA, OUTPUT);
   pinMode(LEFTOUTPUTB, OUTPUT);
   pinMode(RIGHTOUTPUTA, OUTPUT);
