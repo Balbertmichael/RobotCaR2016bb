@@ -68,14 +68,14 @@ void forward () {
 void turnLeft () {
     digitalWrite(LEFTOUTPUTA, LOW);
     digitalWrite(RIGHTOUTPUTA, HIGH);
-    digitalWrite(LEFTOUTPUTB, HIGH);
+    digitalWrite(LEFTOUTPUTB, LOW);
     digitalWrite(RIGHTOUTPUTB, LOW);
 }
 void turnRight () {
     digitalWrite(LEFTOUTPUTA, HIGH);
     digitalWrite(RIGHTOUTPUTA, LOW);
     digitalWrite(LEFTOUTPUTB, LOW);
-    digitalWrite(RIGHTOUTPUTB, HIGH);
+    digitalWrite(RIGHTOUTPUTB, LOW);
 }
 void stopMotion () {
     digitalWrite(LEFTOUTPUTA, LOW);
