@@ -14,6 +14,7 @@ int differenceThreshold = 30;
 int DISTANCESENSOR_THRESHOLD = 100;
 int whiteThreshold = 500;
 int REDLINE_THRESHOLD = 200;
+int movementDelay = 20;
 
 void setup() {
   // put your setup code here, to run once:
@@ -64,22 +65,26 @@ void forward () {
     digitalWrite(RIGHTOUTPUTA, HIGH);
     digitalWrite(LEFTOUTPUTB, LOW);
     digitalWrite(RIGHTOUTPUTB, LOW);
+    delay(movementDelay);
 }
 void turnLeft () {
     digitalWrite(LEFTOUTPUTA, LOW);
     digitalWrite(RIGHTOUTPUTA, HIGH);
     digitalWrite(LEFTOUTPUTB, HIGH);
     digitalWrite(RIGHTOUTPUTB, LOW);
+    delay(movementDelay);
 }
 void turnRight () {
     digitalWrite(LEFTOUTPUTA, HIGH);
     digitalWrite(RIGHTOUTPUTA, LOW);
     digitalWrite(LEFTOUTPUTB, LOW);
     digitalWrite(RIGHTOUTPUTB, HIGH);
+    delay(movementDelay);
 }
 void stopMotion () {
     digitalWrite(LEFTOUTPUTA, LOW);
     digitalWrite(RIGHTOUTPUTA, LOW);
     digitalWrite(LEFTOUTPUTB, LOW);
     digitalWrite(RIGHTOUTPUTB, LOW);
+    delay(movementDelay);
 }
