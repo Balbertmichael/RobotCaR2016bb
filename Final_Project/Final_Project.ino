@@ -11,7 +11,7 @@
 
 int differenceThreshold = 0;
 
-int distanceThreshold = 100;
+int distanceThreshold = 625;
 int whiteThreshold = 500;
 int REDLINE_THRESHOLD = 200;
 
@@ -50,6 +50,8 @@ void loop() {
   Serial.print(rightPhoto);
   Serial.print("\t");
   Serial.print(centerPhoto);
+  Serial.print("\t");
+  Serial.print(centerDistance);
   
  if (centerDistance > distanceThreshold) {
    stopMotion();
