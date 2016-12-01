@@ -9,14 +9,14 @@
 #define RIGHTOUTPUTA 9
 #define RIGHTOUTPUTB 10
 
-int differenceThreshold = 30;
+int differenceThreshold = 0;
 
 int DISTANCESENSOR_THRESHOLD = 100;
 int whiteThreshold = 500;
 int REDLINE_THRESHOLD = 200;
 
-int stepDelay = 600
-int movementDelay = 600
+int stepDelay = 200;
+int movementDelay = 100;
 
 void setup() {
   // put your setup code here, to run once:
@@ -55,23 +55,23 @@ void loop() {
         if (leftPhoto <= rightPhoto && centerPhoto <= leftPhoto && (max (rightPhoto, leftPhoto) - centerPhoto) > differenceThreshold) {
           forward();
           
-          delay(stepDelay);
+          /* delay(stepDelay);
           stopMotion();
-          delay(movementDelay);
+          delay(movementDelay); */
           
         } else if (rightPhoto <= centerPhoto && rightPhoto <= leftPhoto && (max (centerPhoto, leftPhoto) - rightPhoto) > differenceThreshold) {
           turnRight();
           
-          delay(stepDelay);
+          /* delay(stepDelay);
           stopMotion();
-          delay(movementDelay);
+          delay(movementDelay); */
           
-        } else if (leftPhoto <= centerPhoto && leftPhoto <= rightPhoto && (max (centerPhoto, rightPhoto) - leftPhoto) > differenceThreshold) {
+        } else if (leftPhoto <= centerPhoto || leftPhoto <= rightPhoto && (max (centerPhoto, rightPhoto) - leftPhoto) > differenceThreshold) {
           turnLeft();
           
-          delay(stepDelay);
+                    /* delay(stepDelay);
           stopMotion();
-          delay(movementDelay);
+          delay(movementDelay); */
         }
   }
 
