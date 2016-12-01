@@ -66,7 +66,7 @@ void loop() {
           stopMotion();
           delay(movementDelay);
           
-        } else if (leftPhoto <= centerPhoto || leftPhoto <= rightPhoto && (max (centerPhoto, rightPhoto) - leftPhoto) > differenceThreshold) {
+        } else if (leftPhoto <= centerPhoto && leftPhoto <= rightPhoto && (max (centerPhoto, rightPhoto) - leftPhoto) > differenceThreshold) {
           turnLeft();
           
           delay(stepDelay);
