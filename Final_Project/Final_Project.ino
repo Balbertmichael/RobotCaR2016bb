@@ -69,13 +69,13 @@ void forward () {
 }
 void turnLeft () {
     digitalWrite(LEFTOUTPUTA, LOW);
-    digitalWrite(RIGHTOUTPUTA, HIGH);
+    digitalWrite(RIGHTOUTPUTA, LOW);
     digitalWrite(LEFTOUTPUTB, HIGH);
     digitalWrite(RIGHTOUTPUTB, LOW);
     delay(movementDelay);
 }
 void turnRight () {
-    digitalWrite(LEFTOUTPUTA, HIGH);
+    digitalWrite(LEFTOUTPUTA, LOW);
     digitalWrite(RIGHTOUTPUTA, LOW);
     digitalWrite(LEFTOUTPUTB, LOW);
     digitalWrite(RIGHTOUTPUTB, HIGH);
