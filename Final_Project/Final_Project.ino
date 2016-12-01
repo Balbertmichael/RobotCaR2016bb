@@ -13,10 +13,12 @@ int differenceThreshold = 0;
 
 int distanceThreshold = 625;
 int whiteThreshold = 500;
-int redLineThreshold = 200;
+int redLineThreshold = 550;
 
 int stepDelay = 200;
 int movementDelay = 100;
+
+boolean wallDetected = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -55,7 +57,11 @@ void loop() {
   
  if (centerDistance > distanceThreshold) {
    stopMotion();
-   if (centerDistance < distanceThreshold){
+   wallDetected = 1;
+  
+ } else if (wallDetected = 1) {
+   
+ if (centerDistance < distanceThreshold){
      if (centerPhoto < redLineThreshold || leftPhoto < redLineThreshold || rightPhoto < redLineThreshold){
        stopMotion();
      }
@@ -68,9 +74,11 @@ void loop() {
          forward();
        }
      }
+   } else {
+    stopMotion();
    }
-   
- } else {
+ 
+ } else if (wallDetected = 0) {
         if (leftPhoto <= rightPhoto && centerPhoto <= leftPhoto && (max (rightPhoto, leftPhoto) - centerPhoto) > differenceThreshold) {
           forward();
           
