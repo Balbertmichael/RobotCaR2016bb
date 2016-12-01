@@ -15,6 +15,9 @@ int DISTANCESENSOR_THRESHOLD = 100;
 int whiteThreshold = 500;
 int REDLINE_THRESHOLD = 200;
 
+int stepDelay = 600
+int movementDelay = 600
+
 void setup() {
   // put your setup code here, to run once:
   pinMode(LEFTPHOTO, INPUT);
@@ -51,10 +54,24 @@ void loop() {
  
         if (leftPhoto <= rightPhoto && centerPhoto <= leftPhoto && (max (rightPhoto, leftPhoto) - centerPhoto) > differenceThreshold) {
           forward();
+          
+          delay(stepDelay);
+          stopMotion();
+          delay(movementDelay);
+          
         } else if (rightPhoto <= centerPhoto && rightPhoto <= leftPhoto && (max (centerPhoto, leftPhoto) - rightPhoto) > differenceThreshold) {
           turnRight();
+          
+          delay(stepDelay);
+          stopMotion();
+          delay(movementDelay);
+          
         } else if (leftPhoto <= centerPhoto || leftPhoto <= rightPhoto && (max (centerPhoto, rightPhoto) - leftPhoto) > differenceThreshold) {
-          turnLeft(); //not finished
+          turnLeft();
+          
+          delay(stepDelay);
+          stopMotion();
+          delay(movementDelay);
         }
   }
 
